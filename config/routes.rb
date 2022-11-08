@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    # get 'users/index'
     resources :users, only: %w[index show edit update]
   end
 
