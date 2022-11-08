@@ -16,6 +16,8 @@ html
       - if user_signed_in?
         li
           = link_to "sign out", destroy_user_session_path, method: :delete
+        li
+          = link_to "acount delete", user_registration_path, method: :delete
       - else
         li
           = link_to "sign in", new_user_session_path

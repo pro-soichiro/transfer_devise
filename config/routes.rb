@@ -9,10 +9,11 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
-    # omniauth_callbacks: 'users/omniauth_callbacks',
+    omniauth_callbacks: 'users/omniauth_callbacks',
   }
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
+    get '/users', to: 'devise/registrations#destroy'
   end
 
   authenticated :user do

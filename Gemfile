@@ -55,6 +55,13 @@ gem "devise"
 gem "slim"
 gem "html2slim"
 
+# oauth
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+
+# Dotenv
+gem "dotenv-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

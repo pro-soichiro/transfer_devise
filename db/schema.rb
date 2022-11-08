@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_044640) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_120425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sns_credentials", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.string "meta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -41,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_044640) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "sns_credentials", "users"
 end
