@@ -15,6 +15,10 @@ html
     ul
       - if user_signed_in?
         li
+          = link_to "Index", user_root_path
+        li
+          = link_to "Profile", users_user_path(current_user)
+        li
           = link_to "sign out", destroy_user_session_path, method: :delete
         li
           = link_to "acount delete", user_registration_path, method: :delete

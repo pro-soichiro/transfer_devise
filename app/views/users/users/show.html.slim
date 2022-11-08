@@ -1,0 +1,40 @@
+h1
+  | Users#show
+= link_to 'Edit Profile', edit_users_user_path(current_user)
+table border='1'
+  thead
+    tr
+      th align="center"
+        | ID
+      th align="center"
+        | 名前
+      th align="center"
+        | サインイン回数
+      th align="center"
+        | 最終ログイン時間
+      th align="center"
+        | 最新ログイン時間
+      th align="center"
+        | 最終ログインIPアドレス
+      th align="center"
+        | 最新ログインIPアドレス
+      th align="center"
+        | OAuth認可
+  tbody
+    tr
+      td align="center"
+        = current_user.id
+      td align="center"
+        = current_user.name ||= 'NO NAME'
+      td align="center"
+        = current_user.sign_in_count ||= 'NULL'
+      td align="center"
+        = current_user.last_sign_in_at? ? l(current_user.last_sign_in_at, format: :long) : 'NULL'
+      td align="center"
+        = current_user.current_sign_in_at? ? l(current_user.current_sign_in_at, format: :long) : 'NULL'
+      td align="center"
+        = current_user.last_sign_in_ip ||= 'NULL'
+      td align="center"
+        = current_user.current_sign_in_ip ||= 'NULL'
+      td align="center"
+        = current_user.sns_credential.present?

@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    get 'users/index'
+    # get 'users/index'
+    resources :users, only: %w[index show edit update]
   end
 
   root to: 'home#index'

@@ -17,6 +17,8 @@ table border='1'
         | 最終ログインIPアドレス
       th align="center"
         | 最新ログインIPアドレス
+      th align="center"
+        | OAuth認可
   tbody
     - @users.each do |user|
       tr
@@ -34,3 +36,5 @@ table border='1'
           = user.last_sign_in_ip ||= 'NULL'
         td align="center"
           = user.current_sign_in_ip ||= 'NULL'
+        td align="center"
+          = user.sns_credential.present?
