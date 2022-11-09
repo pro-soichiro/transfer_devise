@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
     get '/users', to: 'devise/registrations#destroy'
+    patch 'users/confirmation', to: 'users/confirmations#update'
   end
 
   authenticated :user do
