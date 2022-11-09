@@ -1,11 +1,17 @@
 h1
   | Users#show
-= link_to 'Edit Profile', edit_users_user_path(current_user)
+= link_to 'Edit Name', edit_users_user_path(current_user)
+br
+= link_to 'Edit email and password', edit_user_registration_path
+br
+
 table border='1'
   thead
     tr
       th align="center"
         | ID
+      th align="center"
+        | Email
       th align="center"
         | 名前
       th align="center"
@@ -24,6 +30,8 @@ table border='1'
     tr
       td align="center"
         = current_user.id
+      td align="center"
+        = current_user.email
       td align="center"
         = current_user.name ||= 'NO NAME'
       td align="center"

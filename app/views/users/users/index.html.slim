@@ -6,6 +6,8 @@ table border='1'
       th align="center"
         | ID
       th align="center"
+        | Email
+      th align="center"
         | 名前
       th align="center"
         | サインイン回数
@@ -24,6 +26,8 @@ table border='1'
       tr
         td align="center"
           = user.id
+        td align="center"
+          = user.email
         td align="center"
           = user.name ||= 'NO NAME'
         td align="center"
