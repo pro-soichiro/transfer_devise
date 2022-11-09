@@ -5,11 +5,14 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     passwords: 'users/passwords',
-    registrations: 'users/registrations',
+    # registrations: 'users/registrations',
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: 'users/omniauth_callbacks',
+  }
+  devise_for :registrations, class_name: "User::Registration", controllers: {
+    confirmations: 'user/registrations'
   }
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'

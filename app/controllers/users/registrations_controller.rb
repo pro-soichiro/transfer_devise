@@ -10,9 +10,37 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
+  def create
+    puts params
+    puts 'debug'
+    super
+  end
+
+
+  # ==============================
+  # POST /resource/confirmation
   # def create
-  #   super
+  #   user_registration = User::Registration.find_or_initialize_by(unconfirmed_email: params[:registration][:email])
+  #   if user_registration.save
+  #     super do
+  #       flash[:notice] = "Sending an email confirmation instruction"
+  #       return render :create
+  #     end
+  #   else
+  #     respond_with(user_registration)
+  #   end
   # end
+
+  # GET /resource/confirmation?confirmation_token=abcdef
+  # def show
+  #   super do
+  #     @user = User.new
+  #     @user_database_authentication = User::DatabaseAuthentication.new
+  #     return render :show
+  #   end
+  # end
+  # ==============================
+
 
   # GET /resource/edit
   # def edit
