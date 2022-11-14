@@ -23,10 +23,10 @@ html
         li
           = link_to "sign out", destroy_user_session_path, method: :delete
         li
-          = link_to "acount delete", user_registration_path, method: :delete
+          / = link_to "acount delete", user_registration_path, method: :delete
       - else
         li
           = link_to "sign in", new_user_session_path
         li
-          = link_to "sign up", new_user_registration_path
+          = link_to "sign up", new_registration_confirmation_path
     = yield

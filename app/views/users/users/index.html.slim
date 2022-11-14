@@ -11,16 +11,20 @@ table border='1'
         | 名前
       th align="center"
         | サインイン回数
-      th align="center"
-        | 最終ログイン時間
-      th align="center"
-        | 最新ログイン時間
-      th align="center"
-        | 最終ログインIPアドレス
-      th align="center"
-        | 最新ログインIPアドレス
+      / th align="center"
+      /   | 最終ログイン時間
+      / th align="center"
+      /   | 最新ログイン時間
+      / th align="center"
+      /   | 最終ログインIPアドレス
+      / th align="center"
+      /   | 最新ログインIPアドレス
       th align="center"
         | OAuth認可
+      th align="center"
+        | confirmation_token
+      th align="center"
+        | confirmed_at
   tbody
     - @users.each do |user|
       tr
@@ -29,16 +33,20 @@ table border='1'
         td align="center"
           = user.email
         td align="center"
-          = user.name ||= 'NO NAME'
+          = user.name ||= '-'
         td align="center"
-          = user.sign_in_count ||= 'NULL'
+          = user.sign_in_count ||= '-'
+        / td align="center"
+        /   = user.last_sign_in_at? ? l(user.last_sign_in_at, format: :long) : 'NULL'
+        / td align="center"
+        /   = user.current_sign_in_at? ? l(user.current_sign_in_at, format: :long) : 'NULL'
+        / td align="center"
+        /   = user.last_sign_in_ip ||= 'NULL'
+        / td align="center"
+        /   = user.current_sign_in_ip ||= 'NULL'
         td align="center"
-          = user.last_sign_in_at? ? l(user.last_sign_in_at, format: :long) : 'NULL'
+          = user.sns_credential.present? ? 'O' : '-'
         td align="center"
-          = user.current_sign_in_at? ? l(user.current_sign_in_at, format: :long) : 'NULL'
+          = user.confirmation_token? ? 'O' : '-'
         td align="center"
-          = user.last_sign_in_ip ||= 'NULL'
-        td align="center"
-          = user.current_sign_in_ip ||= 'NULL'
-        td align="center"
-          = user.sns_credential.present?
+          = user.confirmed_at ||= '-'

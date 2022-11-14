@@ -2,7 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    @users = User.preload(:sns_credential)
   end
 
   def update

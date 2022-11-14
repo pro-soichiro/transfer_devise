@@ -5,15 +5,18 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     passwords: 'users/passwords',
-    # registrations: 'users/registrations',
+    registrations: 'users/registrations',
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
   devise_for :registrations, class_name: "User::Registration", controllers: {
-    confirmations: 'user/registrations'
+    confirmations: 'users/registrations'
   }
+  devise_scope :registration do
+    post "/registration/finish", to: "users/registrations#finish",  as: "finish_user_registration"
+  end
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
     get '/users', to: 'devise/registrations#destroy'
