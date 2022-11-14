@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     passwords: 'users/passwords',
     sessions: 'users/sessions',
-    confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
@@ -16,10 +15,18 @@ Rails.application.routes.draw do
   devise_scope :registration do
     post "/registrations/destroy", to: "users/registrations#destroy",  as: "destroy_user_registration"
   end
+
+  devise_for :confirmations, class_name: "User::Confirmation", controllers: {
+    confirmations: 'users/confirmations'
+  }
+  devise_scope :confirmations do
+    post "/confirmations/destroy", to: "users/confirmations#destroy",  as: "destroy_user_confirmations"
+  end
+
+
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
     delete '/registrations', to: 'devise/registrations#destroy', as: "user_registration"
-    patch 'users/confirmation', to: 'users/confirmations#update'
   end
 
   authenticated :user do
