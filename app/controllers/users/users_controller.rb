@@ -2,7 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.preload(:sns_credential)
+    @users = User.preload(:sns_credential).order(created_at: :desc)
   end
 
   def update

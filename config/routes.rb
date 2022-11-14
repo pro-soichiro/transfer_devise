@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     passwords: 'users/passwords',
-    registrations: 'users/registrations',
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
@@ -15,11 +14,11 @@ Rails.application.routes.draw do
     confirmations: 'users/registrations'
   }
   devise_scope :registration do
-    post "/registration/finish", to: "users/registrations#finish",  as: "finish_user_registration"
+    post "/registrations/destroy", to: "users/registrations#destroy",  as: "destroy_user_registration"
   end
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
-    get '/users', to: 'devise/registrations#destroy'
+    delete '/registrations', to: 'devise/registrations#destroy', as: "user_registration"
     patch 'users/confirmation', to: 'users/confirmations#update'
   end
 

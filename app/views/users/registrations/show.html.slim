@@ -1,15 +1,15 @@
 h2
-  | Account Activation
+  | 本登録フォーム
 
 / = form_for(resource, :as => resource_name, url: users_confirmation_path, :html => { method: 'patch' }) do |f|
-= form_with(url: finish_user_registration_path) do |f|
+= form_with(url: destroy_user_registration_path) do |f|
   = render "devise/shared/error_messages", resource: resource
   / = devise_error_messages!
   fieldset
     legend
-      | Account Activation #{ resource.try(:user_name) }
+      | Account Activation
     for
-      = resource.email
+      = resource.unconfirmed_email
 
   p
     = f.label :name
@@ -20,6 +20,6 @@ h2
   p
     = f.label :password_confirmation,'Password Confirmation:'
     = f.password_field :password_confirmation
-    = hidden_field_tag :confirmation_token, resource.confirmation_token
+    = hidden_field_tag :confirmation_token, @confirmation_token
   p
     = f.submit "Activate"
