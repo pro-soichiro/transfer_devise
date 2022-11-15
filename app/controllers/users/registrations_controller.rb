@@ -47,7 +47,8 @@ class Users::RegistrationsController < Devise::ConfirmationsController
     flash[:notice] = "本登録が完了いたしました！"
     redirect_to user_root_path
   rescue
-    render :show
+    flash[:notice] = "エラーが発生しました。初めからやり直してください。"
+    render :new
   end
 
   protected
