@@ -19,9 +19,14 @@ Rails.application.routes.draw do
   end
 
   # email変更
-  devise_for :settings, class_name: "User::Registration", controllers: {
-    confirmations: 'users/settings'
-  }
+  namespace :users do
+    resources :settings, only: %i[new create] do
+      collection do
+        get :show
+        delete :destroy
+      end
+    end
+  end
 
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'

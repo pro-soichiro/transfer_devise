@@ -1,0 +1,13 @@
+h2
+  | 本人確認
+
+= form_with(url: users_settings_path, method: :delete) do |f|
+    = hidden_field_tag :confirmation_token, @confirmation_token
+
+  .field
+    = f.label :current_password
+    br
+    = f.password_field :current_password
+
+  .actions
+    = f.submit "認証する"

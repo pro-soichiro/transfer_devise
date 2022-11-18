@@ -1,11 +1,10 @@
 h1 Email変更
 
-= form_for(resource, as: resource_name, url: setting_confirmation_path, html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
+= form_with(url: users_settings_path) do |f|
   .field
-    = f.label :email
+    = f.label :email, '変更後Email'
     br
-    = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+    = f.email_field :email
+
   .actions
     = f.submit "Emailを変更する"
-= render "devise/shared/links"
