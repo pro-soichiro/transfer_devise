@@ -6,3 +6,4 @@ p
   | You can confirm your account email through the link below:
 p
   = link_to 'Confirm my account', registration_confirmation_url(confirmation_token: @token)
+  = link_to 'Confirm my account', users_settings_url(confirmation_token: @token)

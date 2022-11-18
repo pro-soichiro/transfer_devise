@@ -6,20 +6,31 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     passwords: 'users/passwords',
     sessions: 'users/sessions',
-    confirmations: 'users/confirmations',
     unlocks: 'users/unlocks',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
+
+  # 認証機能付き登録
   devise_for :registrations, class_name: "User::Registration", controllers: {
     confirmations: 'users/registrations'
   }
   devise_scope :registration do
     post "/registrations/destroy", to: "users/registrations#destroy",  as: "destroy_user_registration"
   end
+
+  # email変更
+  namespace :users do
+    resources :settings, only: %i[new create] do
+      collection do
+        get :show
+        delete :destroy
+      end
+    end
+  end
+
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
     delete '/registrations', to: 'devise/registrations#destroy', as: "user_registration"
-    patch 'users/confirmation', to: 'users/confirmations#update'
   end
 
   authenticated :user do
